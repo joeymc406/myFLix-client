@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { MainView } from './src/components/main-view/main-view';
 
 //import statement that you need to bundle ./index.scss
-import './index.scss';
+import './src/index.scss';
 
 export class MainView extends React.Component {
 
