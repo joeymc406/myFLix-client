@@ -19,7 +19,7 @@ export class MainView extends React.Component {
         selectedMovie: null
       };
     }
-  }
+  
 
   render () {
     const { movies, selectedMovie } = this.state;
@@ -33,5 +33,6 @@ export class MainView extends React.Component {
         <button onClick={() => {alert('Nice!')}}>Click Me!</button>
         {movies.map(movie => <MovieCard key={movie._id} movie={movie} />)}
       </div>
-    );
-  }
+      );
+    }
+}
