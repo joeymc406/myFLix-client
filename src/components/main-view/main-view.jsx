@@ -1,19 +1,33 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { MainView } from './components/main-view/main-view';
 
 //import statement that you need to bundle ./index.scss
-import './index.scss';
+import '../index.scss';
+//importing of movie-card to main-view
+import { MovieCard } from '../movie-card/movie-card';
 
 export class MainView extends React.Component {
 
+  constructor(){
+    super();
+    this.state = {
+      movies: [
+      { _id: 1, Title: 'Inception', Description: 'description 1', ImagePath: 'img1'},
+      { _id: 2, Title: 'John Wick', Description: 'description 2', ImagePath: 'img2'},
+      { _id: 3, Title: 'John wick 2', Description: 'description 3', ImagePath: 'img3'}
+      ]
+    }
+  }
+
   render () {
+    const { movies } = this.state;
+
+    if (movies.length === 0) return <div className="main-view">The list is empty!</div>;
+
     return (
       <div className="main-view">
-        <div>Inception</div>
-        <div>The Shawshank Redemption</div>
-        <div>Gladiator</div>
+        {movies.map(movie => <MovieCard />)}
       </div>
     );
   }
+
 }
