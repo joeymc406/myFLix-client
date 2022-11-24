@@ -1,7 +1,7 @@
 import React from 'react';
 
 //import statement that you need to bundle ./index.scss
-import '../index.scss';
+import '../../index.scss';
 //importing of movie-card to main-view
 import { MovieCard } from '../movie-card/movie-card';
 
@@ -19,13 +19,13 @@ export class MainView extends React.Component {
   }
 
   render () {
-    const { movies } = this.state;
+    const { moviesData } = this.state;
 
     if (movies.length === 0) return <div className="main-view">The list is empty!</div>;
 
     return (
       <div className="main-view">
-        {movies.map(movie => <MovieCard />)}
+        {movies.map(movie => <MovieCard key={movie._id} movieData={movie} />)}
       </div>
     );
   }
