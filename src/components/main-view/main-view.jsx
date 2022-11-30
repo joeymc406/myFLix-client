@@ -1,5 +1,5 @@
 import React from 'react';
-
+import axios from 'axios';
 //import statement that you need to bundle ./index.scss
 import '../../index.scss';
 //importing of movie-card to main-view
@@ -11,13 +11,21 @@ export class MainView extends React.Component {
   constructor() {
     super();
     this.state = {
-      movies: [
-      { _id: 1, Title: 'Inception', Description: 'description 1', ImagePath: 'img1'},
-      { _id: 2, Title: 'John Wick', Description: 'description 2', ImagePath: 'img2'},
-      { _id: 3, Title: 'John wick 2', Description: 'description 3', ImagePath: 'img3'}
-        ],
+      movies: [],
         selectedMovie: null
       };
+    }
+
+    componentDidMount(){
+      axios.get('https://joeymc406movie-api.herokuapp.com')
+      .then(response => {
+        this.setState({
+          movie:response.data
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
     }
 
     setSelectedMovie(newSelectedMovie) {
