@@ -17,10 +17,12 @@ export class MainView extends React.Component {
     }
 
     componentDidMount(){
-      axios.get('https://joeymc406movie-api.herokuapp.com/movies')
+      console.log('start')
+      axios.get('https://joeymc406movie-api.onrender.com/movies')
       .then(response => {
+        console.log(response.data)
         this.setState({
-          movie: response.data
+          movies: response.data
         });
       })
       .catch(error => {
