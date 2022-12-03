@@ -6,9 +6,11 @@ export class MovieCard extends React.Component {
     const { movie, onMovieClick } = this.props;
     
     return (
-    <div className="movie-card mb-3" onClick={() => onMovieClick(movie)}>
-      <div>{movie.Title}</div>
-      <div>{movie.Description}</div>
-    </div>);
+      <div onClick={() => onMovieClick(movie)} classname="movie-card">{movie.Title}</div>
+    //<div className="movie-card mb-3" onClick={() => onMovieClick(movie)}>
+      //<div>{movie.Title}</div>
+      //<div>{movie.Description}</div>
+    //</div>);
+    );
   }
 }
