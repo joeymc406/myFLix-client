@@ -9,7 +9,7 @@ export function LoginView(props) {
         console.log(username, password);
         // send a request to the server for authentication
         //then call props.onLoggedIn(username)
-        //props.onLoggedIn(username);
+        props.onLoggedIn(username);
     };
 // export class LoginView extends React.Component {
 //     constructor(props) {
