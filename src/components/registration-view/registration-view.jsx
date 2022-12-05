@@ -12,7 +12,7 @@ export function RegistrationView(props) {
         e.preventDefault();
         console.log('username', ' Password')
 
-        props.onRegistered(username);
+        props.onRegister(username);
     };
 
 return (
@@ -33,5 +33,9 @@ return (
         </label>
         <button type="submit" onClick={handleSubmit}>Submit</button>
     </form>
-)
+    )
 }
+
+RegistrationView.propTypes = {
+    onRegister: PropTypes.func.isRequired
+};
