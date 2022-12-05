@@ -3,7 +3,7 @@ import axios from 'axios';
 //import statement that you need to bundle ./index.scss
 import '../../index.scss';
 //importing of registration-view
-import { RegistrationView } from '../registration-view'
+import { RegistrationView } from '../registration-view/registration-view'
 //importing of login-view to main-view
 import { LoginView } from '../login-view/login-view';
 //importing of movie-card to main-view
