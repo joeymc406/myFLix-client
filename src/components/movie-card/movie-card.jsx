@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import "./index.scss";
+import "./movie-view.scss";
 
 export class MovieCard extends React.Component {
   render() {
