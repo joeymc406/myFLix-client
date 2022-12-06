@@ -1,6 +1,6 @@
 import React,{ useState } from 'react';
 
-import "./index.scss";
+import "./login-view.scss";
 
 export function LoginView(props) {
     const [ username, setUsername ] = useState('');
