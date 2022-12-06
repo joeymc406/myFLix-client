@@ -1,6 +1,6 @@
 import React from'react';
 
-import "./index.scss";
+import "./movie-view.scss";
 
 export class MovieView extends React.Component {
 
