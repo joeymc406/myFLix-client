@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 //import statement that you need to bundle ./index.scss
-import './index.scss';
+import './main-view.scss';
 //importing of registration-view
 import { RegistrationView } from '../registration-view/registration-view'
 //importing of login-view to main-view
