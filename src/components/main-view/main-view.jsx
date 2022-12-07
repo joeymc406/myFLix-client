@@ -1,6 +1,13 @@
 import React from 'react';
 import axios from 'axios';
 //import statement that you need to bundle ./index.scss
+
+//importing of reactboostrap Row
+import Row from 'react-bootstrap/Row';
+//importing of reactbootstrap Column
+import Col from 'react-bootstrap/Col';
+
+//imprt of mainview.scss
 import './main-view.scss';
 //importing of registration-view
 import { RegistrationView } from '../registration-view/registration-view'
@@ -68,7 +75,14 @@ export class MainView extends React.Component {
       <div className="main-view">
 
         { selectedMovie
-        ? <MovieView movie={selectedMovie} onBackClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie);}}/>
+        
+        ? (
+          <Row className="justify-content-md-center"> 
+            <Col md={8}>
+        <MovieView movie={selectedMovie} onBackClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie);}}/>
+            </Col>
+          </Row>
+        )
         : movies.map(movie => (
           <MovieCard key={movie._id} movie={movie} onMovieClick={(newSelectedMovie) => { this.setSelectedMovie(newSelectedMovie)}}/>
         ))
@@ -77,3 +91,4 @@ export class MainView extends React.Component {
     );
   }
 }
+
