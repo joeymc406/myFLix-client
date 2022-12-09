@@ -26,7 +26,7 @@ return (
         <CardGroup>
           <Card>
             <CardBody>
-              <Card.Header>Register Here!</Card.Header>
+              <Card.Title>Register Here!</Card.Title>
               <Form>
                 <Form.Group>
                   <Form.Label>
