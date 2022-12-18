@@ -19,6 +19,8 @@
   "homepage": "https://github.com/joeymc406/myFLix-client#readme",
   "keywords": [],
   "dependencies": {
+    "react-router": "6.3.0",
+    "react-router-dom": "6.3.0",
     "axios": "^1.2.0",
     "bootstrap": "^5.2.3",
     "prop-types": "^15.8.1",
