@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 //import statement that you need to bundle ./index.scss
 
@@ -18,58 +18,38 @@ import { MovieCard } from '../movie-card/movie-card';
 //importing of movie-wiew to main-view
 import { MovieView } from '../movie-view/movie-view';
 
+export function MainView() {
+  const [movies, setMovies] = useState([]);
+  const [selectedMovie, setSelectedMovie] = useState(null);
+  const [user, setUser] = useState(null);
+  const [registered, setRegistered] = useState(true)
 
-export class MainView extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      movies: [],
-        selectedMovie: null,
-        user: null,
-        registered: true,
-      };
-    }
+  useEffect(() => {
+    axios.get('https://joeymc406movie-api.onrender.com/movies')
+          .then(response => {
+            console.log(response.data)
+            setMovies(response.data)
+          })
+          .catch(error => {
+            console.log(error);
+          });
+  },[])
 
-    componentDidMount(){
-      console.log('start')
-      axios.get('https://joeymc406movie-api.onrender.com/movies')
-      .then(response => {
-        console.log(response.data)
-        this.setState({
-          movies: response.data
-        });
-      })
-      .catch(error => {
-        console.log(error);
-      });
-    }
+  if(!registered) {
+    return <RegistrationView/>
+  }
 
-    setSelectedMovie(movie) {
-      this.setState({
-        selectedMovie: movie
-      });
-    }
-  
-    onLoggedIn(user) {
-      this.setState({
-        user
-      });
-    }
+  if(!user) {
+    return (
+      <LoginView onLoggedIn={user => setUser(user)}
+    onRegister={(registered) => setRegistered(registered)}/>
+    )
+  }
 
-    onRegister(registered) {
-      this.setState({registered});
-  
-    }
+  if(movies.length === 0) return <div className="MainView">The list is emtpy!</div>
 
-  render () {
-    const { movies, selectedMovie, user, registered } = this.state;
-
-    if(!registered) return <RegistrationView/>
-
-    if(!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)}
-    onRegister={(registered) => this.onRegister(registered)}/>;
-
-    if (movies.length === 0) return <div className="main-wiew">The list is empty!</div>
+  return (
+    <div className="main-view">
 
     return (
       <Row className="main-view justify-content-md-center">
@@ -89,4 +69,6 @@ export class MainView extends React.Component {
     );   
   }
 }  
+
+
 

@@ -21,6 +21,7 @@ export class MovieView extends React.Component {
   render() {
     const { movie, onBackClick } = this.props;
 
+
     return (
       <Row>
         <Col>
@@ -45,4 +46,4 @@ export class MovieView extends React.Component {
       </Row>
     );
   }
-}
+
