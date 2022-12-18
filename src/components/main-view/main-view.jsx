@@ -51,25 +51,24 @@ export function MainView() {
   return (
     <div className="main-view">
 
-    { selectedMovie
-    
-    ? (
-      <Row className="justify-content-md-center"> 
-        <Col md={8}>
-    <MovieView movie={selectedMovie} onBackClick={newSelectedMovie => { setSelectedMovie(newSelectedMovie);}}/>
-        </Col>
+    return (
+      <Row className="main-view justify-content-md-center">
+        { selectedMovie
+          ? (
+            <Col md={8}>
+              <MovieView movie={selectedMovie} onBackClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie);}}/>
+            </Col>
+            )
+          : movies.map(movie => (
+            <Col md={8}>
+              <MovieCard key={movie._id} movie={movie} onMovieClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }}/>
+            </Col>
+        ))
+      }
       </Row>
-    )
-    : movies.map(movie => (
-      <MovieCard key={movie._id} movie={movie} onMovieClick={(newSelectedMovie) => { setSelectedMovie(newSelectedMovie)}}/>
-    ))
-    }
-    <div>
-      <button onClick={() => { setUser(null); }}>Logoiut</button>
-    </div>
-  </div>
+    );   
+  }
+}  
 
-  )
-}
 
 
