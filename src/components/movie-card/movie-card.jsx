@@ -4,9 +4,10 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/card';
 import "./movie-card.scss";
 
-export class MovieCard extends React.Component {
-  render() {
-    const { movie, onMovieClick } = this.props;
+// export class MovieCard extends React.Component {
+//   render() {
+//     const { movie, onMovieClick } = this.props;
+export const MovieCard = ({ Movie, onMovieCLick }) => {
     
     return (
       <Card>
@@ -18,7 +19,6 @@ export class MovieCard extends React.Component {
         </Card.Body>
       </Card>
       );
-    }
 }
 
 MovieCard.PropTypes = {

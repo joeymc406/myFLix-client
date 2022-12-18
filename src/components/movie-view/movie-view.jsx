@@ -2,22 +2,8 @@ import React from'react';
 
 import "./movie-view.scss";
 
-export class MovieView extends React.Component {
+export const MovieView = ({ Movie, onBackClick }) => {
 
-  keypressCallback(event) {
-    console.log(event.key);
-  }
-
-  componentDidMoount() {
-    document.addEventListener('keypress', this.keypressCallback); 
-  }
-
-  compnentWillUnmount() {
-    document.removeEventListener('keypress', this.keypressCallback);
-  }
-
-  render() {
-    const { movie, onBackClick } = this.props;
     return (
       <div className="movie-view">
         <div className="movie-poster">
@@ -38,4 +24,4 @@ export class MovieView extends React.Component {
       </div>
     );
   }
-}
+
