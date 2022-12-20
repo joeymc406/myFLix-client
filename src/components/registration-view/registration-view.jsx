@@ -14,9 +14,29 @@ export function RegistrationView(props) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('username', ' Password')
+        const data = {
+            Username: username,
+            Password: password,
+            Email: email,
+            Birthday: birthday
+        };
 
-        props.onRegister(username);
+        fetch("https://joeymc406movie-api.onrender.com/register", {
+            method: "POST",
+            body: JSON.stringify(data),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then((response) => {
+            if(response.ok) {
+                alert("Registration successful");
+                window.location.reload();
+            } else {
+                alert("Registration failed");
+            }
+        });
+
+        //props.onRegister(username);
     };
 
 return (
@@ -27,7 +47,7 @@ return (
           <Card>
             <CardBody>
               <Card.Title>Register Here!</Card.Title>
-              <Form>
+              <Form onSubmit={handleSubmit}>
                 <Form.Group>
                   <Form.Label>
                     Useername:
@@ -67,7 +87,7 @@ return (
                       placeholder="enter your birthdate"
                     />
                   </Form.Label>
-                  <Button type="submit" onClick={handleSubmit}>
+                  <Button className="submit-button" type="submit" onClick={handleSubmit}>
                     Submit
                   </Button>
                 </Form.Group>
@@ -81,6 +101,6 @@ return (
 );
 }
 
-RegistrationView.propTypes = {
-    onRegister: PropTypes.func.isRequired
-};
+//RegistrationView.propTypes = {
+  //  onRegister: PropTypes.func.isRequired
+//};
