@@ -1,15 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/card';
 import "./movie-card.scss";
+import { Col,Card, Button } from 'react-bootstrap';
 
-// export class MovieCard extends React.Component {
-//   render() {
-//     const { movie, onMovieClick } = this.props;
-export const MovieCard = ({ Movie, onMovieCLick }) => {
+
+export const MovieCard = ({ movie, onMovieClick }) => {
     
     return (
+      <Col md={3}>
       <Card>
         <Card.Img variant="top" src={movie.ImagePath} />
         <Card.Body>
@@ -20,6 +18,7 @@ export const MovieCard = ({ Movie, onMovieCLick }) => {
           </Button>
         </Card.Body>
       </Card>
+      </Col>
     );
    }
 
