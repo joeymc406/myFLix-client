@@ -1,12 +1,9 @@
 import React from 'React'
 import { Form, Button, Card, CardGroup, Container, Col, Row } from 'react-bootstrap';
 
-
-import PropTypes from 'prop-types';
-
 import "./registration-view.scss";
 
-export function RegistrationView(props) {
+export const RegistrationView = () => {
     const [ username, setUsername ] = useState('');
     const [ password, setPassword ] = useState('');
     const [ email, setEmail] = useState('');
@@ -35,8 +32,6 @@ export function RegistrationView(props) {
                 alert("Registration failed");
             }
         });
-
-        //props.onRegister(username);
     };
 
 return (
@@ -48,18 +43,20 @@ return (
             <CardBody>
               <Card.Title>Register Here!</Card.Title>
               <Form onSubmit={handleSubmit}>
-                <Form.Group>
-                  <Form.Label>
-                    Useername:
-                    <Form.Control
-                      type="text"
-                      value={username}
-                      onChange={(e) => setUsername(e.target.value)}
-                      required
-                      minLength="8"
-                      placeholder="username must be 8 characters"
-                    />
-                  </Form.Label>
+                <Form.Group controlId="formUsername">
+                    <Form.Label>
+                        Useername:
+                        <Form.Control
+                        type="text"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                        required
+                        minLength="8"
+                        placeholder="username must be 8 characters"
+                        />
+                    </Form.Label>
+                </Form.Group>
+                <Form.Group controlId="formPassword">
                   <Form.Label>
                     Password:
                     <Form.Control
@@ -70,7 +67,9 @@ return (
                       minLength="8"
                       placeholder="password must be 8 characters"
                     />
-                  </Form.Label>
+                  </Form.Label> 
+                </Form.Group>
+                <Form.Group controlId="formEmail">
                   <Form.Label>
                     <Form.Control
                       type="text"
@@ -79,6 +78,8 @@ return (
                       placeholder="enter your email address"
                     />
                   </Form.Label>
+                </Form.Group>
+                <Form.Group controlId="formBirthday">
                   <Form.Label>
                     <Form.Control
                       type="text"
@@ -87,10 +88,10 @@ return (
                       placeholder="enter your birthdate"
                     />
                   </Form.Label>
+                </Form.Group>
                   <Button className="submit-button" type="submit" onClick={handleSubmit}>
                     Submit
                   </Button>
-                </Form.Group>
               </Form>
             </CardBody>
           </Card>

@@ -7,7 +7,7 @@ import "./movie-card.scss";
 // export class MovieCard extends React.Component {
 //   render() {
 //     const { movie, onMovieClick } = this.props;
-export const MovieCard = ({ Movie, onMovieCLick }) => {
+export const MovieCard = ({ movie, onMovieCLick }) => {
     
     return (
       <Card>
