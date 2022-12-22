@@ -1,59 +1,75 @@
-import React, { useState } from 'react';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
+import React, { useState } from "react";
+import {
+  Card,
+  Button,
+  Form,
+  Container,
+  Row,
+  Col,
+  Card,
+  Button,
+  CardGroup,
+  CardBody,
+} from "react-bootstrap";
+import axios from 'axios'
 
 import "./login-view.scss";
-import { Card } from 'react-bootstrap';
 
-export function LoginView(props) {
-    const [ username, setUsername ] = useState('');
-    const [ password, setPassword ] = useState('');
+export function LoginView({ onLogIn, onClickNavToRegister }) {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    axios.post("https://joeymc406movie-api.onrender.com/login", { Username: username, Password: password})
+    .then(res => {
+        console.log(res)
+        onLogIn(res.data.user, res.data.token)
+    }).catch(err => {
+      console.log(err)
+    })
+  }
+  return (
+    <Container className="login-container">
+      <Row>
+        <Col>
+          <CardGroup>
+            <Card>
+            <Card.Title>Log In</Card.Title>
+              <Form onSubmit={handleSubmit}>
+                  <Form.Group controlId="formUsername">
+                     <Form.Label>Username:</Form.Label>
+                     <Form.Control
+                       type="text"
+                       onChange={(e) => setUsername(e.target.value)}
+                     />
+                   </Form.Group>
+                   <Form.Group controlId="formPassword">
+                    <Form.Label>Password:</Form.Label>
+                    <Form.Control
+                      type="password"
+                      onChange={(e) => setPassword(e.target.value)}
+                    />
+                  </Form.Group>
+                  <Button
+                    className="submit-button"
+                    variant="primary"
+                    type="Submit"
+                  >
+                    Submit
+                  </Button>
+                  <Button
+                    className="submit-button"
+                    variant="primary"
+                    onClick={()=> onClickNavToRegister(true)}
+                  >
+                    Register
+                  </Button>
+                   </Form>
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(username, password);
-        // send a request to the server for authentication
-        //then call props.onLoggedIn(username)
-        props.onLoggedIn(username);
-    };
-
-        return (
-          <Container className="login-container">
-            <Row>
-              <Col>
-                <CardGroup>
-                  <Card>
-                    <CardBody>
-                      <Card.Title>Log In</Card.Title>
-                      <Form>
-                        <Form.Group controlId="formUsername">
-                          <Form.Label>Username:</Form.Label>
-                          <Form.Control
-                            type="text"
-                            onChange={(e) => setUsername(e.target.value)}
-                          />
-                        </Form.Group>
-
-                        <Form.Group controlId="formPassword">
-                          <Form.Label>Password:</Form.Label>
-                          <Form.Control
-                            type="password"
-                            onChange={(e) => setPassword(e.target.vaalue)}
-                          />
-                        </Form.Group>
-                        <Button
-                          variant="primary"
-                          type="Submit"
-                          onClick={handleSubmit}
-                        >
-                          Submit
-                        </Button>
-                      </Form>
-                    </CardBody>
-                  </Card>
-                </CardGroup>
-              </Col>
-            </Row>
-          </Container>
-        );
-    }
+            </Card>
+          </CardGroup>
+        </Col>
+      </Row>
+    </Container>
+  );
+}

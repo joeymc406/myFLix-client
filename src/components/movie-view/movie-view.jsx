@@ -4,22 +4,26 @@ import "./movie-view.scss";
 
 import { Button, Row, Col } from 'react-bootstrap';
 
-export class MovieView extends React.Component {
+export const MovieView = ({ movie, onBackClick }) => {
 
-  keypressCallback(event) {
-    console.log(event.key);
-  }
 
-  componentDidMoount() {
-    document.addEventListener('keypress', this.keypressCallback); 
-  }
 
-  compnentWillUnmount() {
-    document.removeEventListener('keypress', this.keypressCallback);
-  }
+// export class MovieView extends React.Component {
 
-  render() {
-    const { movie, onBackClick } = this.props;
+//   keypressCallback(event) {
+//     console.log(event.key);
+//   }
+
+//   componentDidMoount() {
+//     document.addEventListener('keypress', this.keypressCallback); 
+//   }
+
+//   compnentWillUnmount() {
+//     document.removeEventListener('keypress', this.keypressCallback);
+//   }
+
+//   render() {
+//     const { movie, onBackClick } = this.props;
 
 
     return (
@@ -40,10 +44,10 @@ export class MovieView extends React.Component {
               <span className="value">{movie.Description}</span>
             </div>
 
-            <Button onClick={() => onBackClick(null)}>Back</Button>
+            <Button className="back-button" onClick={() => onBackClick(null)}>Back</Button>
           </div>
         </Col>
       </Row>
     );
   }
-
+  

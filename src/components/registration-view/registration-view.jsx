@@ -1,12 +1,9 @@
 import React from 'React'
 import { Form, Button, Card, CardGroup, Container, Col, Row } from 'react-bootstrap';
 
-
-import PropTypes from 'prop-types';
-
 import "./registration-view.scss";
 
-export function RegistrationView(props) {
+export const RegistrationView = () => {
     const [ username, setUsername ] = useState('');
     const [ password, setPassword ] = useState('');
     const [ email, setEmail] = useState('');
@@ -14,9 +11,27 @@ export function RegistrationView(props) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('username', ' Password')
+        const data = {
+            Username: username,
+            Password: password,
+            Email: email,
+            Birthday: birthday
+        };
 
-        props.onRegister(username);
+        fetch("https://joeymc406movie-api.onrender.com/register", {
+            method: "POST",
+            body: JSON.stringify(data),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then((response) => {
+            if(response.ok) {
+                alert("Registration successful");
+                window.location.reload();
+            } else {
+                alert("Registration failed");
+            }
+        });
     };
 
 return (
@@ -27,19 +42,21 @@ return (
           <Card>
             <CardBody>
               <Card.Title>Register Here!</Card.Title>
-              <Form>
-                <Form.Group>
-                  <Form.Label>
-                    Useername:
-                    <Form.Control
-                      type="text"
-                      value={username}
-                      onChange={(e) => setUsername(e.target.value)}
-                      required
-                      minLength="8"
-                      placeholder="username must be 8 characters"
-                    />
-                  </Form.Label>
+              <Form onSubmit={handleSubmit}>
+                <Form.Group controlId="formUsername">
+                    <Form.Label>
+                        Useername:
+                        <Form.Control
+                        type="text"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                        required
+                        minLength="8"
+                        placeholder="username must be 8 characters"
+                        />
+                    </Form.Label>
+                </Form.Group>
+                <Form.Group controlId="formPassword">
                   <Form.Label>
                     Password:
                     <Form.Control
@@ -50,7 +67,9 @@ return (
                       minLength="8"
                       placeholder="password must be 8 characters"
                     />
-                  </Form.Label>
+                  </Form.Label> 
+                </Form.Group>
+                <Form.Group controlId="formEmail">
                   <Form.Label>
                     <Form.Control
                       type="text"
@@ -59,6 +78,8 @@ return (
                       placeholder="enter your email address"
                     />
                   </Form.Label>
+                </Form.Group>
+                <Form.Group controlId="formBirthday">
                   <Form.Label>
                     <Form.Control
                       type="text"
@@ -67,10 +88,10 @@ return (
                       placeholder="enter your birthdate"
                     />
                   </Form.Label>
-                  <Button type="submit" onClick={handleSubmit}>
+                </Form.Group>
+                  <Button className="submit-button" type="submit" onClick={handleSubmit}>
                     Submit
                   </Button>
-                </Form.Group>
               </Form>
             </CardBody>
           </Card>
@@ -81,6 +102,3 @@ return (
 );
 }
 
-RegistrationView.propTypes = {
-    onRegister: PropTypes.func.isRequired
-};
