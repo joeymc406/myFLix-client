@@ -102,6 +102,3 @@ return (
 );
 }
 
-//RegistrationView.propTypes = {
-  //  onRegister: PropTypes.func.isRequired
-//};
